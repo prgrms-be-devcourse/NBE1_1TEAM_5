@@ -1,7 +1,7 @@
 package com.example.gccoffee.model;
 
 public class User {
-    private final long id;
+    private Long id;
     private Email email;
     private Password password;
     private Name name;
