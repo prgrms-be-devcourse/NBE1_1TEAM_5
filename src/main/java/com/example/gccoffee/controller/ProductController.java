@@ -16,6 +16,7 @@ public class ProductController {
     this.productService = productService;
   }
 
+  @LogExecutionTime
   @GetMapping("/products")
   public String productsPage(Model model) {
     var products = productService.getAllProducts();
@@ -28,7 +29,6 @@ public class ProductController {
     return "new-product";
   }
 
-  @LogExecutionTime
   @PostMapping("/products")
   public String newProduct(CreateProductRequest createProductRequest) {
     productService.createProduct(
