@@ -20,6 +20,7 @@ public class ProductController {
     this.productService = productService;
   }
 
+
   @GetMapping("/products")
   public String productsPage(Model model) {
     var products = productService.getAllProducts();
@@ -41,23 +42,5 @@ public class ProductController {
       createProductRequest.description());
     return "redirect:/products";
   }
-
-  //상품 업데이트
-  @PutMapping("/{productId}")
-  public ResponseEntity<Product> updateProduct(@PathVariable UUID productId, @RequestBody UpdateProductRequest request) {
-    Product updatedProduct = productService.updateProduct(productId, request);
-
-    return ResponseEntity.ok(updatedProduct);
-  }
-
-  //상품 삭제
-  @DeleteMapping("/{productId}")
-  public ResponseEntity<Void> deleteProduct(@PathVariable UUID productId) {
-    productService.deleteProduct(productId);
-
-    return ResponseEntity.noContent().build();
-  }
-
-
 
 }
