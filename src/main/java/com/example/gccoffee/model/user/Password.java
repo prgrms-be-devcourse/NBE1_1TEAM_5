@@ -1,10 +1,7 @@
-package com.example.gccoffee.model;
+package com.example.gccoffee.model.user;
 
 import lombok.Getter;
 import org.springframework.util.Assert;
-
-import java.util.Objects;
-import java.util.regex.Pattern;
 
 @Getter
 public class Password {

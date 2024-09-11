@@ -1,8 +1,8 @@
 package com.example.gccoffee.service.user;
 
 import com.example.gccoffee.model.Email;
-import com.example.gccoffee.model.Password;
-import com.example.gccoffee.model.User;
+import com.example.gccoffee.model.user.Password;
+import com.example.gccoffee.model.user.User;
 import com.example.gccoffee.repository.user.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;

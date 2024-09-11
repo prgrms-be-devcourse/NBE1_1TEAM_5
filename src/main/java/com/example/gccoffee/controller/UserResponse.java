@@ -1,8 +1,8 @@
 package com.example.gccoffee.controller;
 
 import com.example.gccoffee.model.Email;
-import com.example.gccoffee.model.Name;
-import com.example.gccoffee.model.User;
+import com.example.gccoffee.model.user.Name;
+import com.example.gccoffee.model.user.User;
 import lombok.Builder;
 
 @Builder

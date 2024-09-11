@@ -1,4 +1,4 @@
-package com.example.gccoffee.model;
+package com.example.gccoffee.model.user;
 
 import lombok.Getter;
 import org.springframework.util.Assert;

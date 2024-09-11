@@ -1,7 +1,7 @@
 package com.example.gccoffee.controller.request;
 
 import com.example.gccoffee.model.Email;
-import com.example.gccoffee.model.Password;
+import com.example.gccoffee.model.user.Password;
 
 public record LoginRequest(
         Email email,

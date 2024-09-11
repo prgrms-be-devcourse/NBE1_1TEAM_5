@@ -1,9 +1,9 @@
 package com.example.gccoffee.repository.user;
 
 import com.example.gccoffee.model.Email;
-import com.example.gccoffee.model.Name;
-import com.example.gccoffee.model.Password;
-import com.example.gccoffee.model.User;
+import com.example.gccoffee.model.user.Name;
+import com.example.gccoffee.model.user.Password;
+import com.example.gccoffee.model.user.User;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Component;
 

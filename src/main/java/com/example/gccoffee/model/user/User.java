@@ -1,6 +1,8 @@
-package com.example.gccoffee.model;
+package com.example.gccoffee.model.user;
 
 import com.example.gccoffee.controller.request.SignUpRequest;
+import com.example.gccoffee.model.Email;
+import com.example.gccoffee.model.Order;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

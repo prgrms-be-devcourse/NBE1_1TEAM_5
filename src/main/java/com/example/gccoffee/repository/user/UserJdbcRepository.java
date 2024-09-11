@@ -2,8 +2,8 @@ package com.example.gccoffee.repository.user;
 
 
 import com.example.gccoffee.model.Email;
-import com.example.gccoffee.model.Password;
-import com.example.gccoffee.model.User;
+import com.example.gccoffee.model.user.Password;
+import com.example.gccoffee.model.user.User;
 import lombok.RequiredArgsConstructor;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
