@@ -5,12 +5,14 @@ import com.example.gccoffee.model.Email;
 import com.example.gccoffee.model.Password;
 import com.example.gccoffee.model.User;
 import lombok.RequiredArgsConstructor;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 @RequiredArgsConstructor
 @Repository
@@ -19,10 +21,15 @@ public class UserJdbcRepository implements UserRepository {
     private final NamedParameterJdbcTemplate jdbcTemplate;
 
     @Override
-    public User findByEmail(Email email) {
+    public Optional<User> findByEmail(Email email) {
         String sql = "SELECT email, password, name FROM users WHERE email = :email";
-        Map<String, Object> param = Map.of("email", email);
-        return jdbcTemplate.queryForObject(sql, param, new UserRowMapper());
+        try {
+            Map<String, Object> param = Map.of("email", email);
+            User user = jdbcTemplate.queryForObject(sql, param, new UserRowMapper());
+            return Optional.of(user);
+        } catch (EmptyResultDataAccessException e) {
+            return Optional.empty();
+        }
     }
 
     @Override
@@ -40,11 +47,9 @@ public class UserJdbcRepository implements UserRepository {
     }
 
     @Override
-    public User update(Password password, Email email) {
-        Map<String, Object> param = Map.of("password", password);
+    public void update(Password password, Email email) {
         String sql = "UPDATE users SET password = :password WHERE email = :email";
-        jdbcTemplate.update(sql, param);
-        return findByEmail(email);
+        jdbcTemplate.update(sql, toUserParamMap(email, password));
     }
 
     @Override
@@ -59,6 +64,13 @@ public class UserJdbcRepository implements UserRepository {
         paramMap.put("email", user.getEmail().getAddress());
         paramMap.put("password", user.getPassword().getValue());
         paramMap.put("name", user.getName().getValue());
+        return paramMap;
+    }
+
+    private Map<String, Object> toUserParamMap(Email email, Password password) {
+        Map<String, Object> paramMap = new HashMap<>();
+        paramMap.put("email", email.getAddress());
+        paramMap.put("password", password.getValue());
         return paramMap;
     }
 }

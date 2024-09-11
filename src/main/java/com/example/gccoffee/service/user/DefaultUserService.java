@@ -27,7 +27,8 @@ public class DefaultUserService implements UserService {
     @Transactional(readOnly = true)
     @Override
     public User readDetail(Email email) {
-        return userRepository.findByEmail(email);
+        return userRepository.findByEmail(email)
+                .orElseThrow(() -> new NoDataException("해당하는 유저가 없습니다!"));
     }
 
     @Override
@@ -36,8 +37,10 @@ public class DefaultUserService implements UserService {
     }
 
     @Override
-    public User edit(Email email, Password password) {
-        return userRepository.update(password, email);
+    public void edit(Email email, Password password) {
+        userRepository.findByEmail(email)
+                .orElseThrow(() -> new NoDataException("해당하는 유저가 없습니다!"));
+        userRepository.update(password, email);
     }
 
     @Override
