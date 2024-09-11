@@ -18,15 +18,19 @@ public class UserJdbcRepository implements UserRepository {
 
     @Override
     public User findById(Long id) {
-        String sql = "select * from users where id = ?";
-
         String sql = "SELECT name FROM users WHERE id = ?";
-        return jdbcTemplate.query(sql, new Object[]{id}, new RowMapper<User>() {});
+        return jdbcTemplate.queryForObject(sql, new Object[]{id} , User.class);
     }
 
     @Override
     public List<User> findAll() {
-        return List.of();
+        String sql = "SELECT * FROM users";
+        return jdbcTemplate.query(sql, (rs, rowNum) -> {
+            new User(
+                    rs.getLong("id"),
+                    rs.ge
+            )
+        })
     }
 
     @Override

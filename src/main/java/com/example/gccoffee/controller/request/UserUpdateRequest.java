@@ -1,7 +1,6 @@
-package com.example.gccoffee.controller;
+package com.example.gccoffee.controller.request;
 
 import com.example.gccoffee.model.Password;
-import org.springframework.security.core.userdetails.User;
 
 public record UserUpdateRequest(
         Password password

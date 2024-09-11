@@ -3,7 +3,9 @@ package com.example.gccoffee.controller;
 import com.example.gccoffee.model.Email;
 import com.example.gccoffee.model.Name;
 import com.example.gccoffee.model.User;
+import lombok.Builder;
 
+@Builder
 public record UserResponse(
         Email email,
         Name name

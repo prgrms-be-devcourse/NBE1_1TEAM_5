@@ -1,5 +1,6 @@
 package com.example.gccoffee.controller;
 
+import com.example.gccoffee.controller.request.CreateProductRequest;
 import com.example.gccoffee.service.ProductService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
