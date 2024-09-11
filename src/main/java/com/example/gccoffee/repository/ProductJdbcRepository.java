@@ -82,6 +82,19 @@ public class ProductJdbcRepository implements ProductRepository {
     );
   }
 
+  public void delete(UUID productId) {
+    // 상품을 삭제
+    int update = jdbcTemplate.update(
+            "DELETE FROM products WHERE product_id = UUID_TO_BIN(:productId)",
+            Collections.singletonMap("productId", productId.toString().getBytes())
+    );
+
+    // 삭제된 행이 없으면 예외 처리
+    if (update != 1) {
+      throw new RuntimeException("No product was deleted");
+    }
+  }
+
   @Override
   public void deleteAll() {
     jdbcTemplate.update("DELETE FROM products", Collections.emptyMap());

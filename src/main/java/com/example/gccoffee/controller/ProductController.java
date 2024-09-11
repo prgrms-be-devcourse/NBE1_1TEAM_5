@@ -1,10 +1,15 @@
 package com.example.gccoffee.controller;
 
+import com.example.gccoffee.model.Category;
+import com.example.gccoffee.model.Product;
 import com.example.gccoffee.service.ProductService;
+import org.h2.command.dml.Update;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.UUID;
 
 @Controller
 public class ProductController {
@@ -36,5 +41,23 @@ public class ProductController {
       createProductRequest.description());
     return "redirect:/products";
   }
+
+  //상품 업데이트
+  @PutMapping("/{productId}")
+  public ResponseEntity<Product> updateProduct(@PathVariable UUID productId, @RequestBody UpdateProductRequest request) {
+    Product updatedProduct = productService.updateProduct(productId, request);
+
+    return ResponseEntity.ok(updatedProduct);
+  }
+
+  //상품 삭제
+  @DeleteMapping("/{productId}")
+  public ResponseEntity<Void> deleteProduct(@PathVariable UUID productId) {
+    productService.deleteProduct(productId);
+
+    return ResponseEntity.noContent().build();
+  }
+
+
 
 }

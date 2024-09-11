@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
@@ -33,6 +34,20 @@ public class OrderJdbcRepository implements OrderRepository {
           toOrderItemParamMap(order.getOrderId(), order.getCreatedAt(), order.getUpdatedAt(), item)));
     return order;
   }
+
+  //product_id가 order_items 테이블에 존재하는지 확인
+  public boolean existsByProductId(UUID productId) {
+    String sql = "SELECT COUNT(*) FROM order_items WHERE product_id = UUID_TO_BIN(:productId)";
+
+    //쿼리 결과를 Integer 타입으로 반환
+    Integer count = jdbcTemplate.queryForObject(
+            sql, Collections.singletonMap("productId", productId.toString().getBytes()),
+            Integer.class
+    );
+
+    return count != null && count > 0;
+  }
+
 
   private Map<String, Object> toOrderParamMap(Order order) {
     var paramMap = new HashMap<String, Object>();
