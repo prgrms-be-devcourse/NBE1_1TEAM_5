@@ -1,6 +1,11 @@
 package com.example.gccoffee.controller.api;
 
-import com.example.gccoffee.service.UserService;
+import com.example.gccoffee.controller.request.SignUpRequest;
+import com.example.gccoffee.controller.request.UserUpdateRequest;
+import com.example.gccoffee.model.Email;
+import com.example.gccoffee.model.Password;
+import com.example.gccoffee.model.User;
+import com.example.gccoffee.service.user.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
@@ -12,35 +17,35 @@ public class UserRestController {
 
     private final UserService userService;
 
-
-    @GetMapping
-    public ApiResponse<> read(@AuthenticationPrincipal ) {
-
-        userService.findAll();
+    @GetMapping("/list")
+    public ApiResponse<> read() {
+        userService.readAll();
+        return ;
     }
 
-    @GetMapping("/{userId}")
-    public ApiResponse<> readDetail(@PathVariable Long userId) {
-        userService.findUser()
+    @GetMapping
+    public ApiResponse<> readDetail(@AuthenticationPrincipal Email email) {
+        userService.readDetail(email);
+        return ;
     }
 
     @PostMapping
-    public ApiResponse<> signUp(UserRequest request) {
-
-        userService.addUser();
+    public ApiResponse<> signUp(SignUpRequest request) {
+        User user = User.from(request);
+        userService.signUp(user);
+        return ;
     }
 
-    @PutMapping("/{userId}")
-    public ApiReponse<> edit(UpdateRequest request, @PathVariable Long userId) {
-
-        userService.update();
+    @PutMapping
+    public ApiReponse<> edit(@AuthenticationPrincipal Email email, UserUpdateRequest request) {
+        Password password = request.password();
+        userService.edit(email, password);
+        return ;
     }
 
-    @DeleteMapping("/{userId}")
-    public ApiResponse<> delete(@PathVariable Long userId) {
-        userService.remove();
+    @DeleteMapping
+    public ApiResponse<> delete(@AuthenticationPrincipal Email email) {
+        userService.delete(email);
+        return ;
     }
-
-
-
 }
