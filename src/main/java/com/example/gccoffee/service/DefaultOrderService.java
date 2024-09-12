@@ -1,9 +1,6 @@
 package com.example.gccoffee.service;
 
-import ch.qos.logback.core.status.ErrorStatus;
 import com.example.gccoffee.controller.OrderResponse;
-import com.example.gccoffee.apiResponse.code.status.ErrorStatus;
-import com.example.gccoffee.apiResponse.exception.GeneralException;
 import com.example.gccoffee.model.Email;
 import com.example.gccoffee.model.Order;
 import com.example.gccoffee.model.OrderItem;

@@ -4,6 +4,7 @@ import com.example.gccoffee.model.user.User;
 import io.jsonwebtoken.*;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import javax.crypto.SecretKey;
 import javax.crypto.spec.SecretKeySpec;
@@ -11,7 +12,7 @@ import java.util.Base64;
 import java.util.Date;
 import java.util.List;
 
-@Component
+@Service
 public class MyJwtTokenProvider {
 
     @Value("${app.secret-key}")

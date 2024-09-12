@@ -65,6 +65,21 @@
     </dependency>
 
 
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-security</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.projectlombok</groupId>
+      <artifactId>lombok</artifactId>
+      <scope>annotationProcessor</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>org.springframework.security</groupId>
+      <artifactId>spring-security-test</artifactId>
+      <scope>test</scope>
+    </dependency>
 
     <!--에러처리 dependency 추가-->
     <dependency>
@@ -78,7 +93,6 @@
       <version>6.2.0.Final</version> <!-- 또는 최신 버전 -->
     </dependency>
     <!--에러처리 dependency 추가-->
-
 
   </dependencies>
 

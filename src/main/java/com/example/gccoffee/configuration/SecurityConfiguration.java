@@ -5,17 +5,17 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
-import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 @Configuration
 @RequiredArgsConstructor
-@EnableGlobalMethodSecurity
-//@EnableWebSecurity
+@EnableWebSecurity
 public class SecurityConfiguration {
 
     private final AuthenticationFilter jwtAuthFilter;
@@ -31,7 +31,7 @@ public class SecurityConfiguration {
                 .antMatchers(HttpMethod.POST,"/products").hasRole("ADMIN")
                 .antMatchers("/orders").hasRole("USER")
                 .and()
-                .addFilter(jwtAuthFilter)
+                .addFilterAfter(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class)
                 .build();
     }
 

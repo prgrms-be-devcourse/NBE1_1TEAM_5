@@ -1,6 +1,7 @@
 package com.example.gccoffee.controller;
 
 
+import com.example.gccoffee.controller.request.CreateProductRequest;
 import com.example.gccoffee.service.ProductService;
 import org.h2.command.dml.Update;
 import org.springframework.http.ResponseEntity;
