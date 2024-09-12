@@ -1,5 +1,7 @@
 package com.example.gccoffee.controller;
 
+
+import com.example.gccoffee.controller.request.CreateProductRequest;
 import com.example.gccoffee.apiResponse.code.status.ErrorStatus;
 import com.example.gccoffee.apiResponse.exception.GeneralException;
 import com.example.gccoffee.service.ProductService;
