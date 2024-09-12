@@ -9,6 +9,7 @@ import javax.crypto.SecretKey;
 import javax.crypto.spec.SecretKeySpec;
 import java.util.Base64;
 import java.util.Date;
+import java.util.List;
 
 @Component
 public class MyJwtTokenProvider {
@@ -28,7 +29,16 @@ public class MyJwtTokenProvider {
                 .compact();
     }
 
-    // 나중에 사용자가 토큰을 들고왔네? 이 토큰이 유효한 토큰이 맞는지 검사하기
+    public List<String> getRoles(String token) {
+        Claims claims = Jwts.parser()
+                .setSigningKey(SECRET_KEY)
+                .parseClaimsJws(token)
+                .getBody();
+
+        return (List<String>) claims.get("roles");
+    }
+
+
     public String validateUserToken(String token){
         try {
             Claims claims = Jwts.parser()
