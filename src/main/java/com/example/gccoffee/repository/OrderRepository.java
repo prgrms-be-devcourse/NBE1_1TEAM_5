@@ -7,9 +7,12 @@ import com.example.gccoffee.model.OrderStatus;
 import java.util.List;
 import java.util.UUID;
 
+import java.util.UUID;
+
 public interface OrderRepository {
 
   Order insert(Order order);
+  boolean existsByProductId(UUID productId);
 
   List<Order> findByEmail(Email email);
 
