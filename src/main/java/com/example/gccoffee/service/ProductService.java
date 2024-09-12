@@ -1,6 +1,6 @@
 package com.example.gccoffee.service;
 
-import com.example.gccoffee.controller.UpdateProductRequest;
+import com.example.gccoffee.controller.request.UpdateProductRequest;
 import com.example.gccoffee.model.Category;
 import com.example.gccoffee.model.Product;
 
