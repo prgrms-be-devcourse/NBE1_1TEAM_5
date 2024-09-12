@@ -13,11 +13,9 @@ import java.util.UUID;
 public class OrderItemJdbcRepository implements OrderItemRepository{
 
     private final NamedParameterJdbcTemplate jdbcTemplate;
-    private final ProductRepository productRepository;
 
-    public OrderItemJdbcRepository(NamedParameterJdbcTemplate jdbcTemplate, ProductRepository productRepository) {
+    public OrderItemJdbcRepository(NamedParameterJdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
-        this.productRepository = productRepository;
     }
 
     @Override
