@@ -38,13 +38,13 @@ Spring Boot를 이용해 만든 커피 주문 서비스입니다. REST API 기�
 
 ### **ERD URL**
 
-- [ERD Cloud]![[스크린샷 2024-09-06 오전 11.16.00.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/bd96b46c-359f-495d-8a5b-33df5e09796a/9e95668c-d92d-45d7-841a-b1d22535d436/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA_2024-09-06_%E1%84%8B%E1%85%A9%E1%84%8C%E1%85%A5%E1%86%AB_11.16.00.png)](https://www.notion.so/1-88c4bca6d81641bf8a79d87c6b2b5009?pvs=4#be24e450fe6d47d988464d28dab664f0)
+- [ERD Cloud](https://www.erdcloud.com/d/qpoasoTd32zcK7NHY)
 
 ### **1차 ERD**
-![1차 ERD](https://prod-files-secure.s3.us-west-2.amazonaws.com/bd96b46c-359f-495d-8a5b-33df5e09796a/9e95668c-d92d-45d7-841a-b1d22535d436/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA_2024-09-06_%E1%84%8B%E1%85%A9%E1%84%8C%E1%85%A5%E1%86%AB_11.16.00.png)
+<img width="901" alt="스크린샷 2024-09-06 오전 11 16 00" src="https://github.com/user-attachments/assets/f575bd34-42e3-4e49-956f-f72e31bde74a">
 
 ### **2차 ERD**
-![2차 ERD](https://prod-files-secure.s3.us-west-2.amazonaws.com/bd96b46c-359f-495d-8a5b-33df5e09796a/c1d592f3-4ef9-4ce3-8d73-01a5c747363b/Image_9-12-24_at_14.42.jpeg)
+<img width="1048" alt="스크린샷 2024-09-12 오후 4 07 28" src="https://github.com/user-attachments/assets/f941223d-e485-489f-9b93-9bcf480a2bfb">
 
 ---
 
