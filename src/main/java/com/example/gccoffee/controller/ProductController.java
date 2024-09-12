@@ -1,7 +1,6 @@
 package com.example.gccoffee.controller;
 
-import com.example.gccoffee.model.Category;
-import com.example.gccoffee.model.Product;
+
 import com.example.gccoffee.service.ProductService;
 import org.h2.command.dml.Update;
 import org.springframework.http.ResponseEntity;
@@ -35,6 +34,7 @@ public class ProductController {
 
   @PostMapping("/products")
   public String newProduct(CreateProductRequest createProductRequest) {
+
     productService.createProduct(
       createProductRequest.productName(),
       createProductRequest.category(),
