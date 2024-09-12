@@ -1,6 +1,9 @@
 package com.example.gccoffee.auth;
 
+import com.example.gccoffee.apiResponse.code.status.ErrorStatus;
+import com.example.gccoffee.apiResponse.exception.GeneralException;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.security.authentication.AbstractAuthenticationToken;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -51,7 +54,7 @@ public class AuthenticationFilter extends OncePerRequestFilter {
                 SecurityContextHolder.setContext(securityContext);
             }
         }catch(Exception ex){
-            throw new InvalidTokenException("유효하지 않은 토큰입니다");
+            throw new GeneralException(ErrorStatus.INVALID_TOKEN);
         }
         filterChain.doFilter(request,response);
     }

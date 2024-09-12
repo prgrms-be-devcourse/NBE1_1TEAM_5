@@ -1,5 +1,7 @@
 package com.example.gccoffee.service.user;
 
+import com.example.gccoffee.apiResponse.code.status.ErrorStatus;
+import com.example.gccoffee.apiResponse.exception.GeneralException;
 import com.example.gccoffee.auth.MyJwtTokenProvider;
 import com.example.gccoffee.model.Email;
 import com.example.gccoffee.model.user.Password;
@@ -30,7 +32,7 @@ public class DefaultUserService implements UserService {
     @Override
     public User readDetail(Email email) {
         return userRepository.findByEmail(email)
-                .orElseThrow(() -> new NoDataException("해당하는 유저가 없습니다!"));
+                .orElseThrow(() -> new GeneralException(ErrorStatus.USER_NOT_FOUND));
     }
 
     @Override
@@ -42,9 +44,9 @@ public class DefaultUserService implements UserService {
     public String login(Email email, Password password) {
 
         User user = userRepository.findByEmail(email)
-                .orElseThrow(() -> new NoDataException("회원이 존재하지 않습니다"));
+                .orElseThrow(() -> new GeneralException(ErrorStatus.USER_NOT_FOUND));
         if (!user.getPassword().equals(password)) {
-            throw new RuntimeException("비밀번호가 달라요");
+            throw new GeneralException(ErrorStatus.LOGIN_FAIL);
         }
         if (email.equals("admin@example.com")) {
             return jwtTokenProvider.createMyToken(user, List.of("ROLE_ADMIN"));
@@ -56,7 +58,7 @@ public class DefaultUserService implements UserService {
     @Override
     public void edit(Email email, Password password) {
         userRepository.findByEmail(email)
-                .orElseThrow(() -> new NoDataException("해당하는 유저가 없습니다!"));
+                .orElseThrow(() -> new GeneralException(ErrorStatus.USER_NOT_FOUND));
         userRepository.update(password, email);
     }
 

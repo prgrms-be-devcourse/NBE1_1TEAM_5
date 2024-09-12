@@ -1,5 +1,7 @@
 package com.example.gccoffee.controller.api;
 
+import com.example.gccoffee.apiResponse.ApiResponse;
+import com.example.gccoffee.controller.UserResponse;
 import com.example.gccoffee.controller.request.LoginRequest;
 import com.example.gccoffee.controller.request.SignUpRequest;
 import com.example.gccoffee.controller.request.UserUpdateRequest;
@@ -12,6 +14,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RequiredArgsConstructor
 @RequestMapping("/users")
 @RestController
@@ -20,39 +24,43 @@ public class UserRestController {
     private final UserService userService;
 
     @GetMapping("/list")
-    public ApiResponse<> read() {
-        userService.readAll();
-        return ;
+    public ApiResponse<List<UserResponse>> read() {
+        List<UserResponse> responses = userService.readAll().stream()
+                .map(UserResponse::from)
+                .toList();
+        return ApiResponse.onSuccess(responses);
     }
 
     @GetMapping
-    public ApiResponse<> readDetail(@AuthenticationPrincipal Email email) {
-        userService.readDetail(email);
-        return ;
+    public ApiResponse<UserResponse> readDetail(@AuthenticationPrincipal Email email) {
+        User user = userService.readDetail(email);
+        UserResponse response = UserResponse.from(user);
+        return ApiResponse.onSuccess(response);
     }
 
     @PostMapping
-    public ApiResponse<> signUp(SignUpRequest request) {
+    public ApiResponse<UserResponse> signUp(SignUpRequest request) {
         User user = User.from(request);
-        userService.signUp(user);
-        return ;
+        User entity = userService.signUp(user);
+        UserResponse response = UserResponse.from(entity);
+        return ApiResponse.onSuccess(response);
     }
 
     @PutMapping
-    public ApiReponse<> edit(@AuthenticationPrincipal Email email, UserUpdateRequest request) {
+    public ApiResponse<Void> edit(@AuthenticationPrincipal Email email, UserUpdateRequest request) {
         Password password = request.password();
         userService.edit(email, password);
-        return ;
+        return ApiResponse.onSuccess(null);
     }
 
     @DeleteMapping
-    public ApiResponse<> delete(@AuthenticationPrincipal Email email) {
+    public ApiResponse<Void> delete(@AuthenticationPrincipal Email email) {
         userService.delete(email);
-        return ;
+        return ApiResponse.onSuccess(null);
     }
 
     @PostMapping("/login")
-    public ResponseEntity<?> login(@RequestBody LoginRequest request) {
+    public ResponseEntity<Void> login(@RequestBody LoginRequest request) {
         String token = userService.login(request.email(), request.password());
         return ResponseEntity.ok().header("Authorization", "Bearer " + token).build();
     }
