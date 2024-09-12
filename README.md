@@ -99,6 +99,7 @@ Spring Boot를 이용해 만든 커피 주문 서비스입니다. REST API 기�
 ## 🧾 API 명세서
 
 관리자는 HTTP API를 통해 관리 기능에 접근하며, 일반 사용자는 REST API를 통해 데이터를 처리할 수 있습니다.
+https://www.notion.so/c5f82bbce17940ec8107d58e3babc55c?v=062c0fb120984b9f8f30acad94c025aa&pvs=4
 
 ---
 
