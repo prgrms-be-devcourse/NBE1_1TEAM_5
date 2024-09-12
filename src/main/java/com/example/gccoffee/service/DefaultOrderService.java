@@ -1,5 +1,7 @@
 package com.example.gccoffee.service;
 
+import com.example.gccoffee.apiResponse.code.status.ErrorStatus;
+import com.example.gccoffee.apiResponse.exception.GeneralException;
 import com.example.gccoffee.model.Email;
 import com.example.gccoffee.model.Order;
 import com.example.gccoffee.model.OrderItem;
@@ -22,6 +24,7 @@ public class DefaultOrderService implements OrderService {
 
   @Override
   public Order createOrder(Email email, String address, String postcode, List<OrderItem> orderItems) {
+
     Order order = new Order(
       UUID.randomUUID(),
       email,
@@ -32,6 +35,7 @@ public class DefaultOrderService implements OrderService {
       LocalDateTime.now(),
       LocalDateTime.now());
     return orderRepository.insert(order);
+
   }
 
 }
