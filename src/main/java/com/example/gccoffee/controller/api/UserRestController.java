@@ -47,9 +47,9 @@ public class UserRestController {
     }
 
     @PutMapping
-    public ApiResponse<Void> edit(@AuthenticationPrincipal Email email, UserUpdateRequest request) {
+    public ApiResponse<Void> edit(@AuthenticationPrincipal String email, @RequestBody UserUpdateRequest request) {
         Password password = request.password();
-        userService.edit(email, password);
+        userService.edit(new Email(email), password);
         return ApiResponse.onSuccess(null);
     }
 
