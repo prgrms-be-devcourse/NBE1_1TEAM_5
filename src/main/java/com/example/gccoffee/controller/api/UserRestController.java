@@ -39,7 +39,7 @@ public class UserRestController {
     }
 
     @PostMapping
-    public ApiResponse<UserResponse> signUp(SignUpRequest request) {
+    public ApiResponse<UserResponse> signUp(@RequestBody SignUpRequest request) {
         User user = User.from(request);
         User entity = userService.signUp(user);
         UserResponse response = UserResponse.from(entity);

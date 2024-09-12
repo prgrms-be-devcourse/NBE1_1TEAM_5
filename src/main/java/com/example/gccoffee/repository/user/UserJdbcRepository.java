@@ -24,7 +24,7 @@ public class UserJdbcRepository implements UserRepository {
     public Optional<User> findByEmail(Email email) {
         String sql = "SELECT email, password, name FROM users WHERE email = :email";
         try {
-            Map<String, Object> param = Map.of("email", email);
+            Map<String, Object> param = Map.of("email", email.getAddress());
             User user = jdbcTemplate.queryForObject(sql, param, new UserRowMapper());
             return Optional.of(user);
         } catch (EmptyResultDataAccessException e) {
@@ -40,7 +40,7 @@ public class UserJdbcRepository implements UserRepository {
 
     @Override
     public User save(User user) {
-        String sql = "INSERT INTO user(email, password, name) " +
+        String sql = "INSERT INTO users(email, password, name) " +
                 "VALUES (:email, :password, :name)";
         jdbcTemplate.update(sql, toUserParamMap(user));
         return user;
@@ -60,6 +60,10 @@ public class UserJdbcRepository implements UserRepository {
     }
 
     private Map<String, Object> toUserParamMap(User user) {
+        if (user.getEmail() == null || user.getEmail().getAddress() == null) {
+            throw new IllegalArgumentException("Email must not be null");
+        }
+
         Map<String, Object> paramMap = new HashMap<>();
         paramMap.put("email", user.getEmail().getAddress());
         paramMap.put("password", user.getPassword().getValue());
