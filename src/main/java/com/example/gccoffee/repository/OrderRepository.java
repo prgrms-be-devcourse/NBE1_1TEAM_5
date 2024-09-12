@@ -12,6 +12,7 @@ import java.util.UUID;
 public interface OrderRepository {
 
   Order insert(Order order);
+
   boolean existsByProductId(UUID productId);
 
   List<Order> findByEmail(Email email);
