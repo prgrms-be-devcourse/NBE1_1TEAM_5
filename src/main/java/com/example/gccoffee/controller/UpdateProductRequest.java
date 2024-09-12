@@ -1,4 +1,4 @@
-package com.example.gccoffee.controller.request;
+package com.example.gccoffee.controller;
 
 import com.example.gccoffee.model.Category;
 

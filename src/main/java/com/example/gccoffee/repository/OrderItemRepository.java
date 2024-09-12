@@ -9,5 +9,4 @@ public interface OrderItemRepository {
 
     // orderId를 통한 OrderItem 목록조회
     List<OrderItem> findByOrderId(UUID orderId);
-
 }
