@@ -32,8 +32,8 @@ public class UserRestController {
     }
 
     @GetMapping
-    public ApiResponse<UserResponse> readDetail(@AuthenticationPrincipal Email email) {
-        User user = userService.readDetail(email);
+    public ApiResponse<UserResponse> readDetail(@AuthenticationPrincipal String email) {
+        User user = userService.readDetail(new Email(email));
         UserResponse response = UserResponse.from(user);
         return ApiResponse.onSuccess(response);
     }

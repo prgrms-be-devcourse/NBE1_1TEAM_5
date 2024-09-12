@@ -35,7 +35,7 @@ public class MyJwtTokenProvider {
 
     public List<String> getRoles(String token) {
         Claims claims = Jwts.parser()
-                .setSigningKey(SECRET_KEY)
+                .setSigningKey(getTokenKey())
                 .parseClaimsJws(token)
                 .getBody();
 
@@ -46,8 +46,8 @@ public class MyJwtTokenProvider {
     public String validateUserToken(String token){
         try {
             Claims claims = Jwts.parser()
-                    .setSigningKey(SECRET_KEY)
-                    .parseClaimsJwt(token)
+                    .setSigningKey(getTokenKey())
+                    .parseClaimsJws(token)
                     .getBody();
             return claims.getSubject();
         } catch (SecurityException ex){
@@ -56,9 +56,8 @@ public class MyJwtTokenProvider {
             throw new JwtException(("유효하지 않은 토큰입니다! MalformedJwtException"));
         } catch(ExpiredJwtException ex){
             throw new JwtException("유효기간이 만료된 토큰입니다!");
-        } catch(RuntimeException ex){
-            ex.printStackTrace();
-            throw ex;
+        } catch(SignatureException ex){
+            throw new SignatureException("서명이 유효하지 않습니다");
         }
     }
 
