@@ -46,7 +46,7 @@ public class DefaultUserService implements UserService {
         if (!user.getPassword().equals(password)) {
             throw new RuntimeException("비밀번호가 달라요");
         }
-        if (email.equals("adin@example.com")) {
+        if (email.equals("admin@example.com")) {
             return jwtTokenProvider.createMyToken(user, List.of("ROLE_ADMIN"));
         }
         List<String> roles = List.of("ROLE_USER");

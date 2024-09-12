@@ -1,7 +1,5 @@
 package com.example.gccoffee.auth;
 
-import com.example.gccoffee.auth.withRefresh.JwtProvider;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;
 import org.springframework.security.authentication.AbstractAuthenticationToken;
