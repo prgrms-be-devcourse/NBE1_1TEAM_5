@@ -50,6 +50,7 @@ public class DefaultProductService implements ProductService {
     //받아온 product_id로 product 조회
     Product product = productRepository.findById(product_id)
             .orElseThrow(()->new IllegalArgumentException("Product not found"));
+                            //new GeneralException(ErrorStatus.PRODUCT_NOT_FOUND);
 
     // 제품 정보 업데이트
     product.setProductName(request.productName());
@@ -67,10 +68,11 @@ public class DefaultProductService implements ProductService {
     // 제품이 존재하는지 확인
     Product product = productRepository.findById(productId)
             .orElseThrow(() -> new IllegalArgumentException("Product not found"));
+                              //new GeneralException(ErrorStatus.PRODUCT_NOT_FOUND);
 
     // product_id가 order_items 테이블에서 참조되는지
     if (orderRepository.existsByProductId(productId)) {
-      throw new IllegalArgumentException("Product cannot be deleted because it is referenced in order items.");
+      //throw new GeneralException(ErrorStatus.PRODUCT_DELETE_FAIL);
     }
 
     // 제품 삭제

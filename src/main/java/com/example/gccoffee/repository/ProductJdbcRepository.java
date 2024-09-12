@@ -31,7 +31,7 @@ public class ProductJdbcRepository implements ProductRepository {
     var update = jdbcTemplate.update("INSERT INTO products(product_id, product_name, category, price, description, created_at, updated_at)" +
       " VALUES (UUID_TO_BIN(:productId), :productName, :category, :price, :description, :createdAt, :updatedAt)", toParamMap(product));
     if (update != 1) {
-      throw new RuntimeException("Noting was inserted");
+      //throw new  GeneralException(ErrorStatus.PRODUCT_REGISTER_FAIL);
     }
     return product;
   }
@@ -44,7 +44,7 @@ public class ProductJdbcRepository implements ProductRepository {
       toParamMap(product)
     );
     if (update != 1) {
-      throw new RuntimeException("Nothing was updated");
+      //throw new  GeneralException(ErrorStatus.PRODUCT_UPDATE_FAIL);
     }
     return product;
   }
@@ -91,7 +91,7 @@ public class ProductJdbcRepository implements ProductRepository {
 
     // 삭제된 행이 없으면 예외 처리
     if (update != 1) {
-      throw new RuntimeException("No product was deleted");
+      //throw new  GeneralException(ErrorStatus.PRODUCT_DELETE_FAIL);
     }
   }
 
