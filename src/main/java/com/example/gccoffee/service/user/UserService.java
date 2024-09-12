@@ -11,6 +11,7 @@ public interface UserService {
     List<User> readAll();
     User readDetail(Email email);
     User signUp(User user);
+    String login(Email email, Password password);
     void edit(Email email, Password password);
     void delete(Email email);
 }

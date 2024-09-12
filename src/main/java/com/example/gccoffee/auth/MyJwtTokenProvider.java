@@ -19,13 +19,16 @@ public class MyJwtTokenProvider {
     @Value("${app.access-expire-time}")
     private long accessExpireTime;
 
-    public String createMyToken(User entity){
+    public String createMyToken(User entity, List<String> roles) {
+
+        Claims claims = Jwts.claims().setSubject(entity.getEmail().getAddress());
+        claims.put("roles", roles);
         return Jwts.builder()
                 .signWith(SignatureAlgorithm.HS256, getTokenKey())
                 .setIssuer("dev-team-5")
                 .setIssuedAt(new Date())
                 .setExpiration(new Date(System.currentTimeMillis() + accessExpireTime))
-                .setSubject(entity.getEmail().getAddress())
+                .setClaims(claims)
                 .compact();
     }
 

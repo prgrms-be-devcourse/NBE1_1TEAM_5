@@ -1,5 +1,6 @@
 package com.example.gccoffee.controller.api;
 
+import com.example.gccoffee.controller.request.LoginRequest;
 import com.example.gccoffee.controller.request.SignUpRequest;
 import com.example.gccoffee.controller.request.UserUpdateRequest;
 import com.example.gccoffee.model.Email;
@@ -7,6 +8,7 @@ import com.example.gccoffee.model.user.Password;
 import com.example.gccoffee.model.user.User;
 import com.example.gccoffee.service.user.UserService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
@@ -47,5 +49,11 @@ public class UserRestController {
     public ApiResponse<> delete(@AuthenticationPrincipal Email email) {
         userService.delete(email);
         return ;
+    }
+
+    @PostMapping("/login")
+    public ResponseEntity<?> login(@RequestBody LoginRequest request) {
+        String token = userService.login(request.email(), request.password());
+        return ResponseEntity.ok().header("Authorization", "Bearer " + token).build();
     }
 }

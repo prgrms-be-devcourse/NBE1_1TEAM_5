@@ -1,5 +1,6 @@
 package com.example.gccoffee.service.user;
 
+import com.example.gccoffee.auth.MyJwtTokenProvider;
 import com.example.gccoffee.model.Email;
 import com.example.gccoffee.model.user.Password;
 import com.example.gccoffee.model.user.User;
@@ -17,6 +18,7 @@ import java.util.List;
 public class DefaultUserService implements UserService {
 
     private final UserRepository userRepository;
+    private final MyJwtTokenProvider jwtTokenProvider;
 
     @Transactional(readOnly = true)
     @Override
@@ -34,6 +36,18 @@ public class DefaultUserService implements UserService {
     @Override
     public User signUp(User user) {
         return userRepository.save(user);
+    }
+
+    @Override
+    public String login(Email email, Password password) {
+
+        User user = userRepository.findByEmail(email)
+                .orElseThrow(() -> new NoDataException("회원이 존재하지 않습니다"));
+        if (user.getPassword() != password) {
+            throw new RuntimeException("비밀번호가 달라요");
+        }
+        List<String> roles = List.of("ROLE_USER");
+        return jwtTokenProvider.createMyToken(user, roles);
     }
 
     @Override
