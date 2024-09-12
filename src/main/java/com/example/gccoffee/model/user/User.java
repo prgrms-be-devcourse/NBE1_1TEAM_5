@@ -18,7 +18,6 @@ public class User {
     private Email email;
     private Password password;
     private Name name;
-    private List<Order> orders = new ArrayList<>();
 
     public User(Email email, Name name, Password password) {
         this.email = email;
