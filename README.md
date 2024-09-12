@@ -38,7 +38,7 @@ Spring Boot를 이용해 만든 커피 주문 서비스입니다. REST API 기�
 
 ### **ERD URL**
 
-- [ERD Cloud](https://www.erdcloud.com/d/qpoasoTd32zcK7NHY)
+- [ERD Cloud]![스크린샷 2024-09-06 오전 11.16.00.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/bd96b46c-359f-495d-8a5b-33df5e09796a/9e95668c-d92d-45d7-841a-b1d22535d436/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA_2024-09-06_%E1%84%8B%E1%85%A9%E1%84%8C%E1%85%A5%E1%86%AB_11.16.00.png)
 
 ### **1차 ERD**
 ![1차 ERD](https://prod-files-secure.s3.us-west-2.amazonaws.com/bd96b46c-359f-495d-8a5b-33df5e09796a/9e95668c-d92d-45d7-841a-b1d22535d436/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA_2024-09-06_%E1%84%8B%E1%85%A9%E1%84%8C%E1%85%A5%E1%86%AB_11.16.00.png)
