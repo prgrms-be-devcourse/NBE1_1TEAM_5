@@ -1,5 +1,9 @@
 package com.example.gccoffee.controller;
 
+
+import com.example.gccoffee.controller.request.CreateProductRequest;
+import com.example.gccoffee.apiResponse.code.status.ErrorStatus;
+import com.example.gccoffee.apiResponse.exception.GeneralException;
 import com.example.gccoffee.service.ProductService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -29,6 +33,7 @@ public class ProductController {
 
   @PostMapping("/products")
   public String newProduct(CreateProductRequest createProductRequest) {
+
     productService.createProduct(
       createProductRequest.productName(),
       createProductRequest.category(),

@@ -34,3 +34,10 @@ CREATE TABLE order_items
     CONSTRAINT fk_order_items_to_order FOREIGN KEY (order_id) REFERENCES orders (order_id) ON DELETE CASCADE,
     CONSTRAINT fk_order_items_to_product FOREIGN KEY (product_id) REFERENCES products (product_id)
 );
+
+CREATE TABLE users
+(
+    email    VARCHAR(50)  NOT NULL  PRIMARY KEY,
+    password VARCHAR(255) NOT NULL,          -- 비밀번호 (암호화된 형태로 저장되므로 충분한 길이)
+    name     VARCHAR(50)  NOT NULL
+);
